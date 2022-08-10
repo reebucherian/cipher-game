@@ -1,8 +1,13 @@
 import { Flex } from "@chakra-ui/react";
 import "./App.css";
+import Game from "./components/structure/Game";
 
 function App() {
-  return <Flex bg="red">Hello World</Flex>;
+  return (
+    <Flex>
+      <Game />
+    </Flex>
+  );
 }
 
 export default App;
