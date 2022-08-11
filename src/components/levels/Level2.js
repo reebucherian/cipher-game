@@ -2,13 +2,13 @@ import { Flex, Text } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import { CgBackspace } from "react-icons/cg";
 
-function Level1() {
+function Level2() {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
   const [shiftLetters, setShiftLetters] = useState(
     "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
   );
   const [shiftNumber, setShift] = useState(0);
-  const [plaintext, setPlaintext] = useState(["", "", "", "", "", ""]);
+  const [plaintext, setPlaintext] = useState(["", "", "", ""]);
   const plaintextIndex = useRef(0);
 
   // shifing Alphabet map to once place left and decreasing Shift counter by 1
@@ -30,14 +30,14 @@ function Level1() {
   };
 
   const addLetter = (letter) => {
-    if (plaintextIndex.current > 5) return;
+    if (plaintextIndex.current > 3) return;
 
     const copy = [...plaintext];
     copy[plaintextIndex.current] = letter;
     plaintextIndex.current += 1;
     setPlaintext(copy);
 
-    if (plaintextIndex.current > 5 && copy.join("") === "CAESAR") {
+    if (plaintextIndex.current > 3 && copy.join("") === "PLAY") {
       alert("Congrats");
     }
   };
@@ -82,7 +82,7 @@ function Level1() {
             justify="center"
             align="center"
           >
-            G
+            S
           </Flex>
           <Flex
             w="30px"
@@ -94,7 +94,7 @@ function Level1() {
             justify="center"
             align="center"
           >
-            E
+            O
           </Flex>
           <Flex
             w="30px"
@@ -106,7 +106,7 @@ function Level1() {
             justify="center"
             align="center"
           >
-            I
+            D
           </Flex>
           <Flex
             w="30px"
@@ -118,31 +118,7 @@ function Level1() {
             justify="center"
             align="center"
           >
-            W
-          </Flex>
-          <Flex
-            w="30px"
-            h="50px"
-            p="3"
-            m="2"
-            borderColor="white"
-            borderWidth="3px"
-            justify="center"
-            align="center"
-          >
-            E
-          </Flex>
-          <Flex
-            w="30px"
-            h="50px"
-            p="3"
-            m="2"
-            borderColor="white"
-            borderWidth="3px"
-            justify="center"
-            align="center"
-          >
-            V
+            B
           </Flex>
         </Flex>
       </Flex>
@@ -161,6 +137,7 @@ function Level1() {
         <Flex
           bg="white"
           p="1"
+          marginRight="2"
           border="1px"
           color="black"
           _hover={{ opacity: 0.7 }}
@@ -189,6 +166,7 @@ function Level1() {
         <Flex
           bg="white"
           p="1"
+          marginLeft="2"
           border="1px"
           color="black"
           _hover={{ opacity: 0.7 }}
@@ -249,4 +227,4 @@ function Level1() {
   );
 }
 
-export default Level1;
+export default Level2;
