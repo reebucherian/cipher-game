@@ -1,14 +1,30 @@
-import { Flex, Text } from "@chakra-ui/react";
+import {
+  Flex,
+  Text,
+  Button,
+  Input,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+} from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import { CgBackspace } from "react-icons/cg";
+import ClueBtn from "../buttons/ClueBtn";
+import InfoBtn from "../buttons/InfoBtn";
 
-function Level1() {
+function Level1({ goToNextLevel }) {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
   const [shiftLetters, setShiftLetters] = useState(
     "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
   );
   const [shiftNumber, setShift] = useState(0);
   const [plaintext, setPlaintext] = useState(["", "", "", "", "", ""]);
+  const [levelComplete, setLevelComplete] = useState(false);
   const plaintextIndex = useRef(0);
 
   // shifing Alphabet map to once place left and decreasing Shift counter by 1
@@ -38,7 +54,7 @@ function Level1() {
     setPlaintext(copy);
 
     if (plaintextIndex.current > 5 && copy.join("") === "CAESAR") {
-      alert("Congrats");
+      setLevelComplete(true);
     }
   };
 
@@ -67,6 +83,7 @@ function Level1() {
       fontFamily="'Press Start 2P', cursive"
       color="white"
       borderWidth="5px"
+      pos="relative"
     >
       {/*Cipher section */}
       <Flex align="center">
@@ -166,6 +183,7 @@ function Level1() {
           _hover={{ opacity: 0.7 }}
           cursor="pointer"
           onClick={shiftLeft}
+          marginRight="2"
         >
           {"<"}
         </Flex>
@@ -194,6 +212,7 @@ function Level1() {
           _hover={{ opacity: 0.7 }}
           cursor="pointer"
           onClick={shiftRight}
+          marginLeft="2"
         >
           {">"}
         </Flex>
@@ -245,6 +264,21 @@ function Level1() {
           </Flex>
         </Flex>
       </Flex>
+      <ClueBtn></ClueBtn>
+      <InfoBtn>hello world</InfoBtn>
+      <Button
+        visibility={levelComplete ? "visible" : "hidden"}
+        bg="blue.300"
+        alignSelf="flex-end"
+        margin="5"
+        pos="absolute"
+        bottom={0}
+        onClick={() => {
+          goToNextLevel();
+        }}
+      >
+        Continue
+      </Button>
     </Flex>
   );
 }

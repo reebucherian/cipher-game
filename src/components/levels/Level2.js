@@ -1,14 +1,15 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Button } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import { CgBackspace } from "react-icons/cg";
 
-function Level2() {
+function Level2({ goToNextLevel }) {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
   const [shiftLetters, setShiftLetters] = useState(
     "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
   );
   const [shiftNumber, setShift] = useState(0);
   const [plaintext, setPlaintext] = useState(["", "", "", ""]);
+  const [levelComplete, setLevelComplete] = useState(false);
   const plaintextIndex = useRef(0);
 
   // shifing Alphabet map to once place left and decreasing Shift counter by 1
@@ -38,7 +39,7 @@ function Level2() {
     setPlaintext(copy);
 
     if (plaintextIndex.current > 3 && copy.join("") === "PLAY") {
-      alert("Congrats");
+      setLevelComplete(true);
     }
   };
 
@@ -67,6 +68,7 @@ function Level2() {
       fontFamily="'Press Start 2P', cursive"
       color="white"
       borderWidth="5px"
+      pos="relative"
     >
       {/*Cipher section */}
       <Flex align="center">
@@ -137,12 +139,12 @@ function Level2() {
         <Flex
           bg="white"
           p="1"
-          marginRight="2"
           border="1px"
           color="black"
           _hover={{ opacity: 0.7 }}
           cursor="pointer"
           onClick={shiftLeft}
+          marginRight="2"
         >
           {"<"}
         </Flex>
@@ -166,12 +168,12 @@ function Level2() {
         <Flex
           bg="white"
           p="1"
-          marginLeft="2"
           border="1px"
           color="black"
           _hover={{ opacity: 0.7 }}
           cursor="pointer"
           onClick={shiftRight}
+          marginLeft="2"
         >
           {">"}
         </Flex>
@@ -223,6 +225,19 @@ function Level2() {
           </Flex>
         </Flex>
       </Flex>
+      <Button
+        visibility={levelComplete ? "visible" : "hidden"}
+        bg="blue.300"
+        alignSelf="flex-end"
+        margin="5"
+        pos="absolute"
+        bottom={0}
+        onClick={() => {
+          goToNextLevel();
+        }}
+      >
+        Continue
+      </Button>
     </Flex>
   );
 }

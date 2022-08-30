@@ -1,10 +1,8 @@
 import { Flex, Text, Input, Button } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import ClueBtn from "../buttons/ClueBtn";
-import InfoBtn from "../buttons/InfoBtn";
 
-function Level3({ goToNextLevel }) {
+function Level4({ goToNextLevel }) {
   const [isLocked, setIsLocked] = useState(false);
   const [plaintext, setPlaintext] = useState("");
   const [levelComplete, setLevelComplete] = useState(false);
@@ -15,10 +13,11 @@ function Level3({ goToNextLevel }) {
     col1: ["", "", ""],
     col2: ["", "", ""],
     col3: ["", "", ""],
+    col4: ["", "", ""],
   });
 
   // storing columns and refreshing them when they move
-  const [columns, setColumns] = useState([0, 1, 2, 3]);
+  const [columns, setColumns] = useState([0, 1, 2, 3, 4]);
   console.log(columns);
   // making sure the Text changes as the column changes
   const updateBoxValue = (col, row, value) => {
@@ -119,7 +118,7 @@ function Level3({ goToNextLevel }) {
   );
 
   useEffect(() => {
-    if (plaintext == "OPENSESAME") {
+    if (plaintext == "LONGCIPHERTEXT") {
       setLevelComplete(true);
     }
   }, [plaintext]);
@@ -139,7 +138,7 @@ function Level3({ goToNextLevel }) {
       <Flex align="center">
         <Text>Cipher:</Text>
         <Flex
-          w="250px"
+          w="300px"
           h="50px"
           p="3"
           m="2"
@@ -148,7 +147,7 @@ function Level3({ goToNextLevel }) {
           justify="center"
           align="center"
         >
-          ES PEENA OSM
+          NHXGETOPECR LIT
         </Flex>
       </Flex>
 
@@ -260,7 +259,7 @@ function Level3({ goToNextLevel }) {
       <Flex align="center">
         <Text>Plaintext:</Text>
         <Input
-          w="250px"
+          w="300px"
           h="50px"
           p="3"
           m="2"
@@ -275,22 +274,18 @@ function Level3({ goToNextLevel }) {
             setPlaintext(e.target.value.toUpperCase());
           }}
         />
+        <Button
+          visibility={levelComplete ? "visible" : "hidden"}
+          bg="blue.300"
+          onClick={() => {
+            goToNextLevel();
+          }}
+        >
+          Continue
+        </Button>
       </Flex>
-      <Button
-        visibility={levelComplete ? "visible" : "hidden"}
-        bg="blue.300"
-        alignSelf="flex-end"
-        margin="5"
-        pos="absolute"
-        bottom={0}
-        onClick={() => {
-          goToNextLevel();
-        }}
-      >
-        Continue
-      </Button>
     </Flex>
   );
 }
 
-export default Level3;
+export default Level4;
