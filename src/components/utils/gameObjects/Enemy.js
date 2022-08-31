@@ -41,8 +41,7 @@ export class Enemy {
 
   checkCollision(p5, player) {
     if (p5.dist(player.centerX, player.centerY, this.x, this.y) < 30) {
-      player.x = 20;
-      player.y = 400;
+      player.health -= 2;
     }
   }
 }

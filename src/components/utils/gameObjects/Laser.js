@@ -34,8 +34,7 @@ export class Laser {
       player.centerY >= this.y &&
       player.centerY <= this.y + this.h
     ) {
-      player.x = 20;
-      player.y = 400;
+      player.health -= 5;
     }
   }
 }

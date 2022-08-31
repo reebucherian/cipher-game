@@ -19,14 +19,18 @@ export class Player {
   onGroundSpeed = 0;
   touching = [];
   isOnGround = true;
+  health = 100;
 
   constructor(startX, startY) {
+    this.startX = startX;
+    this.startY = startY;
     this.x = startX;
     this.y = startY;
     this.updatePlayerPos();
   }
 
   draw(p5) {
+    // player
     if (this.touching.length === 0) {
       this.gravity = 0.98;
     }
@@ -36,6 +40,20 @@ export class Player {
 
     p5.fill(200, 50, 50);
     p5.rect(this.x, this.y, this.w, this.h);
+
+    // health bar
+    p5.fill(0);
+    p5.stroke(255);
+    p5.rect(20, 20, 100, 10);
+    p5.fill(190, 0, 0);
+    p5.noStroke();
+    p5.rect(20, 20, this.health, 10);
+
+    if (this.health <= 0) {
+      this.health = 100;
+      this.x = this.startX;
+      this.y = this.startY;
+    }
   }
 
   movePlayer() {

@@ -3,7 +3,6 @@ import React from "react";
 import Sketch from "react-p5";
 import { Platform } from "../utils/gameObjects/Platform";
 import { Player } from "../utils/gameObjects/Player";
-import p5Types from "p5";
 import { Computer } from "../utils/gameObjects/computer";
 import { Spikes } from "../utils/gameObjects/Spikes";
 import { Key } from "../utils/gameObjects/Key";
@@ -47,14 +46,14 @@ function Platformer1({ goToNextLevel }) {
   };
 
   const draw = (p5) => {
-    seconds = Math.floor(p5.millis() / 1000);
-
     if (nextLevel) {
       return;
     }
 
     p5.background(0);
+    seconds = Math.floor(p5.millis() / 1000);
 
+    // computer
     if (computer.checkCollision(p5, player)) {
       nextLevel = true;
       goToNextLevel();
@@ -64,7 +63,6 @@ function Platformer1({ goToNextLevel }) {
     computer.draw(p5);
 
     // platforms
-
     player.checkPlatforms(platforms);
 
     platforms.forEach((platform) => {
@@ -72,14 +70,12 @@ function Platformer1({ goToNextLevel }) {
     });
 
     //spikes
-
     spikes.forEach((spike) => {
       spike.draw(p5);
       spike.checkCollision(p5, player);
     });
 
     // key
-
     if (!keyTouched) {
       key.draw(p5);
 
