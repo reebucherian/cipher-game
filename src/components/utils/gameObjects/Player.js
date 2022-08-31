@@ -2,7 +2,7 @@ export class Player {
   x = 15;
   y = 15;
   h = 60;
-  w = 40;
+  w = 30;
   top = this.y;
   bottom = this.y + this.h;
   right = this.x + this.w;
@@ -14,7 +14,7 @@ export class Player {
   gravity = 0;
   jumpSpeed = -25;
   speedY = 0;
-  speedX = 4;
+  speedX = 0;
   dy = 0;
   onGroundSpeed = 0;
   touching = [];
@@ -39,13 +39,8 @@ export class Player {
   }
 
   movePlayer() {
-    if (this.movingRight) {
-      this.x += this.speedX;
-    }
+    this.x += this.speedX;
 
-    if (this.movingLeft) {
-      this.x -= this.speedX;
-    }
     this.y += this.speedY;
     this.speedY += this.gravity;
   }

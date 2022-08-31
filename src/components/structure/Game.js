@@ -8,13 +8,16 @@ import Level5 from "../levels/Level5";
 import Platformer1 from "../levels/Platformer1";
 
 function Game() {
-  const [currentLevel, setCurrentLevel] = useState(11);
+  const [currentLevel, setCurrentLevel] = useState(0);
   const nextLevel = () => {
     setCurrentLevel(currentLevel + 1);
   };
 
   let level = <div>Level not found</div>;
   switch (currentLevel) {
+    case 0:
+      level = <Platformer1 goToNextLevel={nextLevel} />;
+      break;
     case 1:
       level = <Level1 goToNextLevel={nextLevel} />;
       break;
