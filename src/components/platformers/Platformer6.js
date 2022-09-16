@@ -9,7 +9,7 @@ import { Key } from "../utils/gameObjects/Key";
 import { Enemy } from "../utils/gameObjects/Enemy";
 import { Laser } from "../utils/gameObjects/Laser";
 
-function Platformer1({ goToNextLevel }) {
+function Platformer6({ goToNextLevel }) {
   let seconds = 0;
   let keyEndtime = 0;
   let player;
@@ -27,22 +27,40 @@ function Platformer1({ goToNextLevel }) {
     p5.disableFriendlyErrors = true;
     p5.noStroke();
     p5.imageMode(p5.CENTER);
-    player = new Player(20, 400);
+    player = new Player(p5, 20, 405);
     computer = new Computer(p5, 750, 75);
     key = new Key(p5, 100, 100);
 
+    //borders
     platforms.push(new Platform(0, 440, 790, 50));
-    platforms.push(new Platform(0, 250, 600, 50));
     platforms.push(new Platform(0, 0, 10, 490));
     platforms.push(new Platform(780, 0, 10, 490));
-    platforms.push(new Platform(250, 100, 600, 50));
     platforms.push(new Platform(0, -40, 790, 50));
 
-    spikes.push(new Spikes(p5, 395, 430));
+    platforms.push(new Platform(100, 340, 120, 25));
+    platforms.push(new Platform(500, 340, 120, 25));
+    platforms.push(new Platform(10, 240, 120, 25));
+    platforms.push(new Platform(300, 240, 120, 25));
+    platforms.push(new Platform(560, 240, 120, 25));
+    platforms.push(new Platform(100, 140, 120, 25));
+    platforms.push(new Platform(300, 140, 120, 25));
+    platforms.push(new Platform(500, 140, 120, 25));
+    platforms.push(new Platform(680, 100, 120, 425));
 
-    enemies.push(new Enemy(p5, 600, 420, 1, 100));
+    spikes.push(new Spikes(p5, 225, 430));
+    spikes.push(new Spikes(p5, 270, 430));
+    spikes.push(new Spikes(p5, 315, 430));
+    spikes.push(new Spikes(p5, 360, 230));
+    spikes.push(new Spikes(p5, 405, 430));
+    spikes.push(new Spikes(p5, 450, 430));
+    spikes.push(new Spikes(p5, 495, 430));
+    spikes.push(new Spikes(p5, 540, 430));
 
-    lasers.push(new Laser(395, 10, 90, 2));
+    enemies.push(new Enemy(p5, 610, 220, 2, 50));
+    enemies.push(new Enemy(p5, 80, 220, 2, 50));
+
+    lasers.push(new Laser(340, 10, 130, 1));
+    lasers.push(new Laser(340, 265, 175, 2));
   };
 
   const draw = (p5) => {
@@ -75,6 +93,22 @@ function Platformer1({ goToNextLevel }) {
       spike.checkCollision(p5, player);
     });
 
+    // enemy
+
+    enemies.forEach((enemy) => {
+      enemy.draw(p5);
+      enemy.checkCollision(p5, player);
+    });
+
+    // laser
+    lasers.forEach((laser) => {
+      laser.draw(p5, seconds);
+      laser.checkCollision(player);
+    });
+
+    // player
+    player.draw(p5);
+
     // key
     if (!keyTouched) {
       key.draw(p5);
@@ -95,25 +129,9 @@ function Platformer1({ goToNextLevel }) {
       p5.fill(255);
       p5.noStroke();
       p5.textAlign(p5.CENTER);
-      p5.text("The key is '4'", 395, 245);
+      p5.text("The key is 'BLAISE'", 395, 245);
       p5.rectMode(p5.CORNER);
     }
-
-    // enemy
-
-    enemies.forEach((enemy) => {
-      enemy.draw(p5);
-      enemy.checkCollision(p5, player);
-    });
-
-    // laser
-    lasers.forEach((laser) => {
-      laser.draw(p5, seconds);
-      laser.checkCollision(player);
-    });
-
-    // player
-    player.draw(p5);
   };
 
   const keyPressed = (p5) => {
@@ -159,4 +177,4 @@ function Platformer1({ goToNextLevel }) {
   );
 }
 
-export default Platformer1;
+export default Platformer6;

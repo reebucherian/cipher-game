@@ -1,21 +1,12 @@
-import {
-  Flex,
-  Text,
-  Button,
-  Input,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Flex, Text, Button, Image } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
+import AwesomeSlider from "react-awesome-slider";
+import "react-awesome-slider/dist/styles.css";
+
 import { CgBackspace } from "react-icons/cg";
 import ClueBtn from "../buttons/ClueBtn";
 import InfoBtn from "../buttons/InfoBtn";
+import InfoSlide from "../InfoSlide";
 
 function Level1({ goToNextLevel }) {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -264,8 +255,88 @@ function Level1({ goToNextLevel }) {
           </Flex>
         </Flex>
       </Flex>
-      <ClueBtn></ClueBtn>
-      <InfoBtn>hello world</InfoBtn>
+      <ClueBtn>Key is '4'</ClueBtn>
+      <InfoBtn title="Caesar Cipher">
+        <Text fontSize="10px" textAlign="left">
+          This is a type of Substitution Cipher, it is named after Julius
+          Caesar, who used this method to encrypt his messages. To encrypt a
+          plaintext message using this method, each letter is shifted by a
+          number of places to get the ciphertext. For example, with a right
+          shift of 3, ‘A’ would map to ‘D’, ‘B’ would map to ‘E’ etc.
+        </Text>
+        <AwesomeSlider className="slider">
+          {/* slide 1 */}
+          <Flex align="center">
+            <Image
+              src="./level-assets/subcipher1.png"
+              w="80%"
+              h="100px"
+              marginTop="5"
+              border="2px solid white"
+              objectFit="contain"
+            />
+            <Text w="80%" marginTop="4" fontSize="9px" textAlign="left">
+              1.{")"} You are given the Cipher here. You have to decrypt it and
+              find the Plaintext to go to the next level.
+            </Text>
+          </Flex>
+
+          {/* slide 2 */}
+          <Flex align="center">
+            <Image
+              src="./level-assets/subcipher2.png"
+              w="80%"
+              h="100px"
+              marginTop="5"
+              border="2px solid white"
+              objectFit="contain"
+            />
+            <Text w="80%" marginTop="4" fontSize="9px" textAlign="left">
+              2.{")"}The Black alphabets give the ciphertext map. Use the Left
+              and Right arrows beside the White alphabets to shift the plaintext
+              letter map.
+            </Text>
+          </Flex>
+          {/* slide 3 */}
+          <Flex align="center" p="0">
+            <Image
+              src="./level-assets/subcipher3.png"
+              w="80%"
+              h="100px"
+              marginTop="5"
+              border="2px solid white"
+              objectFit="contain"
+            />
+            <Text w="80%" marginTop="4" fontSize="9px" textAlign="left">
+              3.{")"}Use the Black cipher letter to find the right mapping of
+              the plaintext letter. You can select the letter by clicking on the
+              highlighted letter
+            </Text>
+          </Flex>
+          {/* slide 4 */}
+          <Flex w="80%" align="center">
+            <Image
+              src="./level-assets/subcipher4.png"
+              w="80%"
+              h="100px"
+              marginTop="5"
+              border="2px solid white"
+              objectFit="contain"
+            />
+            <Text w="80%" marginTop="4" fontSize="9px" textAlign="left">
+              4.{")"}If you are on the correct shift, you will have decrypted
+              the correct plaintext. If not, you can remove the selected letters
+              by clicking on the Backspace button onscreen. Use the ‘?’ button
+              to see the clue, if available. Once you have decrypted the cipher,
+              click on ‘Continue’ to go to the next level.
+            </Text>
+          </Flex>
+        </AwesomeSlider>
+
+        <Flex flexDirection="row"></Flex>
+        <Flex flexDirection="column"></Flex>
+      </InfoBtn>
+
       <Button
         visibility={levelComplete ? "visible" : "hidden"}
         bg="blue.300"

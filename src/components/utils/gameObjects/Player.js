@@ -1,16 +1,14 @@
 export class Player {
   x = 15;
   y = 15;
-  h = 60;
-  w = 30;
+  h = 70;
+  w = 45;
   top = this.y;
   bottom = this.y + this.h;
   right = this.x + this.w;
   left = this.x;
   centerX = this.x + this.w / 2;
   centerY = this.y + this.h / 2;
-  movingLeft = false;
-  movingRight = false;
   gravity = 0;
   jumpSpeed = -25;
   speedY = 0;
@@ -20,13 +18,20 @@ export class Player {
   touching = [];
   isOnGround = true;
   health = 100;
+  direction = "right";
 
-  constructor(startX, startY) {
+  constructor(p5, startX, startY) {
     this.startX = startX;
     this.startY = startY;
     this.x = startX;
     this.y = startY;
     this.updatePlayerPos();
+    this.idleRight = p5.loadImage("./platformer-assets/idleRight.gif");
+    this.idleLeft = p5.loadImage("./platformer-assets/idleLeft.gif");
+    this.runRight = p5.loadImage("./platformer-assets/runRight.gif");
+    this.runLeft = p5.loadImage("./platformer-assets/runLeft.gif");
+    this.jumpRight = p5.loadImage("./platformer-assets/jumpRight.gif");
+    this.jumpLeft = p5.loadImage("./platformer-assets/jumpLeft.gif");
   }
 
   draw(p5) {
@@ -38,8 +43,33 @@ export class Player {
     this.movePlayer();
     this.updatePlayerPos();
 
-    p5.fill(200, 50, 50);
-    p5.rect(this.x, this.y, this.w, this.h);
+    // animations
+    let currentImg = this.idleRight;
+
+    if (this.speedX > 0) {
+      this.direction = "right";
+    } else if (this.speedX < 0) {
+      this.direction = "left";
+    }
+
+    if (this.speedX != 0) {
+      if (this.direction == "right") {
+        currentImg = this.runRight;
+      } else {
+        currentImg = this.runLeft;
+      }
+    } else {
+      if (this.direction == "right") {
+        currentImg = this.idleRight;
+      } else {
+        currentImg = this.idleLeft;
+      }
+    }
+
+    p5.imageMode(p5.CORNER);
+    p5.tint(255);
+    p5.image(currentImg, this.x, this.y, this.w, this.h);
+    p5.imageMode(p5.CENTER);
 
     // health bar
     p5.fill(0);

@@ -33,16 +33,25 @@ export default function ClueBtn({ children }) {
       </Button>
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+        <ModalContent
+          bg="black"
+          w="350px"
+          h="200px"
+          p="3"
+          m="2"
+          color="white"
+          borderColor="white"
+          borderWidth="5px"
+          borderRadius="0"
+          justify="center"
+          align="center"
+          fontFamily="'Press Start 2P', cursive"
+        >
+          <ModalHeader>Clue</ModalHeader>
           <ModalCloseButton />
-          <ModalBody> {children}</ModalBody>
+          <ModalBody textAlign="center"> {children}</ModalBody>
 
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Select
-            </Button>
-          </ModalFooter>
+          <ModalFooter></ModalFooter>
         </ModalContent>
       </Modal>
     </>

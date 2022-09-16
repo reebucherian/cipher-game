@@ -1,6 +1,7 @@
 import { Flex, Text, Input, Button } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import InfoBtn from "../buttons/InfoBtn";
 
 function Level4({ goToNextLevel }) {
   const [isLocked, setIsLocked] = useState(false);
@@ -133,6 +134,7 @@ function Level4({ goToNextLevel }) {
       fontFamily="'Press Start 2P', cursive"
       color="white"
       borderWidth="5px"
+      pos="relative"
     >
       {/*Cipher section */}
       <Flex align="center">
@@ -259,7 +261,7 @@ function Level4({ goToNextLevel }) {
       <Flex align="center">
         <Text>Plaintext:</Text>
         <Input
-          w="300px"
+          w="260px"
           h="50px"
           p="3"
           m="2"
@@ -274,16 +276,27 @@ function Level4({ goToNextLevel }) {
             setPlaintext(e.target.value.toUpperCase());
           }}
         />
-        <Button
-          visibility={levelComplete ? "visible" : "hidden"}
-          bg="blue.300"
-          onClick={() => {
-            goToNextLevel();
-          }}
-        >
-          Continue
-        </Button>
       </Flex>
+      <InfoBtn title="Column Cipher">
+        <Text>
+          You haven't been given a clue here. You will have to brute-force the
+          plaintext by trying all possible permutations of the columns to
+          decrypt the cipher.
+        </Text>
+      </InfoBtn>
+      <Button
+        visibility={levelComplete ? "visible" : "hidden"}
+        bg="blue.300"
+        alignSelf="flex-end"
+        margin="5"
+        pos="absolute"
+        bottom={0}
+        onClick={() => {
+          goToNextLevel();
+        }}
+      >
+        Continue
+      </Button>
     </Flex>
   );
 }

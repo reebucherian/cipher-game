@@ -95,7 +95,7 @@ function Level5({ goToNextLevel }) {
   };
 
   useEffect(() => {
-    if (plaintext == "BELLASO") {
+    if (plaintext == "INDECIPHERABLE") {
       setLevelComplete(true);
     }
   }, [plaintext]);
@@ -126,7 +126,7 @@ function Level5({ goToNextLevel }) {
             justify="center"
             align="center"
           >
-            XMYHIFK
+            JYDMUMQSEZSFMP
           </Flex>
         </Flex>
         {/*Keyword section */}
@@ -269,84 +269,11 @@ function Level5({ goToNextLevel }) {
         >
           A
         </Button>
-        <ClueBtn>Keyword is 'WIN'</ClueBtn>
+        <ClueBtn>Keyword is 'BLAISE'</ClueBtn>
         <InfoBtn title="Vigenère Cipher">
-          <Text fontSize="10px" textAlign="left">
-            To encrypt a plaintext message using the Vigenère method, a keyword
-            is selected and repeated to match the length of the plaintext, so
-            that each letter of the plaintext has a direct mapping to a letter
-            in the keyword. Each letter in the keyword presents a shifted
-            alphabet which starts with that letter, as in the previous Caesar
-            cipher levels, i.e. the letter ‘A’ in the keyword represents a shift
-            of 0, the letter ‘B’ represents a right shift of 1 etc. Each
-            plaintext letter is encrypted using the shift of the corresponding
-            keyword letter. For example, the plaintext ‘apple’ with keyword
-            ‘abc’, will give the key ‘abcab’ and ciphertext would be ‘aqrlf’.
+          <Text>
+            Use your experience from the previous level to decrypt the cipher.
           </Text>
-          <AwesomeSlider className="slider">
-            {/* slide 1 */}
-            <Flex align="center">
-              <Image
-                src="./level-assets/vigcipher1.png"
-                w="80%"
-                h="100px"
-                marginTop="5"
-                border="2px solid white"
-                objectFit="contain"
-              />
-              <Text w="80%" marginTop="4" fontSize="9px" textAlign="left">
-                1.{")"} You are given the Cipher here. You have to decrypt it
-                and find the Plaintext to go to the next level. The input box
-                for the Keyword is below the Cipher. Type the keyword in and
-                repeat it to match the length of the Cipher. For example, the
-                keyword ‘KING’ is repeated to match the Cipher here.
-              </Text>
-            </Flex>
-
-            {/* slide 2 */}
-            <Flex align="center" p="0">
-              <Image
-                src="./level-assets/vigcipher2.png"
-                w="80%"
-                h="200px"
-                marginTop="5"
-                border="2px solid white"
-                objectFit="contain"
-              />
-              <Text w="80%" marginTop="4" fontSize="9px" textAlign="left">
-                2.{")"}Click on the ‘A’ button in the bottom right corner to
-                view the Alphabet Map. Select the letters in the Keyword by
-                clicking on the row where the letter is on the Alphabet Map. The
-                selected letter rows will be highlighted in red. Once you have
-                selected the letters, click the ‘Select’ button to exit.
-              </Text>
-            </Flex>
-            {/* slide 3 */}
-            <Flex align="center" p="0">
-              <Image
-                src="./level-assets/vigcipher3.png"
-                w="80%"
-                h="100px"
-                marginTop="5"
-                border="2px solid white"
-                objectFit="contain"
-              />
-              <Text w="80%" marginTop="4" fontSize="9px" textAlign="left">
-                3.{")"}Your selected letter maps with their shift will be shown
-                in White tiles. Find the Cipher letter in the row of the
-                corresponding Keyword letter. Map that position directly to the
-                Black tile alphabet to get the Plaintext letter of that Cipher
-                letter. You can click on the Black Plaintext letters to select
-                the letter to go into the Plaintext input box or type it in
-                using your keyboard. For example, ‘C’ the first letter of the
-                Cipher, corresponds to ‘K’ of the Keyword ‘KING’, which maps to
-                ‘S’ on the Plaintext letter map.
-              </Text>
-            </Flex>
-          </AwesomeSlider>
-
-          <Flex flexDirection="row"></Flex>
-          <Flex flexDirection="column"></Flex>
         </InfoBtn>
         <Button
           visibility={levelComplete ? "visible" : "hidden"}

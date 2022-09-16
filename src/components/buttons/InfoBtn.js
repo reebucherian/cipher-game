@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-export default function InfoBtn({ children }) {
+export default function InfoBtn({ children, title }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -34,16 +34,41 @@ export default function InfoBtn({ children }) {
       </Button>
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+        <ModalContent
+          bg="black"
+          minWidth="800px"
+          h="500px"
+          p="3"
+          m="2"
+          color="white"
+          borderColor="white"
+          borderWidth="5px"
+          borderRadius="0"
+          justify="center"
+          align="center"
+          fontFamily="'Press Start 2P', cursive"
+        >
+          <ModalHeader>{title}</ModalHeader>
           <ModalCloseButton />
-          <ModalBody> {children}</ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Select
-            </Button>
-          </ModalFooter>
+          <ModalBody
+            overflowY="scroll"
+            css={{
+              "&::-webkit-scrollbar": {
+                width: "4px",
+              },
+              "&::-webkit-scrollbar-track": {
+                width: "15px",
+                background: "black",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                background: "white",
+                borderRadius: "24px",
+              },
+            }}
+          >
+            {" "}
+            {children}
+          </ModalBody>
         </ModalContent>
       </Modal>
     </>

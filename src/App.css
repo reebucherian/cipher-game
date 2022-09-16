@@ -1,2 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+.slider {
+    background-color: black !important;
+}
+
+.awssld__content {
+    background-color: black !important;
+}
+
+.awssld {
+
+    --slider-height-percentage: 50% !important;
+}

@@ -1,6 +1,7 @@
 import { Flex, Text, Button } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import { CgBackspace } from "react-icons/cg";
+import InfoBtn from "../buttons/InfoBtn";
 
 function Level2({ goToNextLevel }) {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -225,6 +226,12 @@ function Level2({ goToNextLevel }) {
           </Flex>
         </Flex>
       </Flex>
+      <InfoBtn title="Caesar Cipher">
+        <Text>
+          You haven't been given a clue here. You will have to brute-force the
+          plaintext by trying all shifts to decrypt the cipher.
+        </Text>
+      </InfoBtn>
       <Button
         visibility={levelComplete ? "visible" : "hidden"}
         bg="blue.300"
